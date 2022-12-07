@@ -5,4 +5,4 @@ class CandidateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Candidate 
-        fields = ['pk', 'first_name', 'last_name', 'phone', 'email', 'created']
+        fields = ['pk', 'first_name', 'last_name', 'phone', 'email','job_interested_in', 'created']

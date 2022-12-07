@@ -25,6 +25,10 @@ class Jobs(models.Model):
     created = models.DateField(auto_now_add=True)
     owner = models.ForeignKey('auth.User',  on_delete=models.CASCADE)
     highlighted = models.TextField()
+    interested_candidate= models.ForeignKey('candidate.Candidate',  on_delete=models.CASCADE)
+
+
+
     
 
     def __str__(self):

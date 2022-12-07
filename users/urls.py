@@ -1,6 +1,8 @@
 from django.urls import include, path
 from rest_framework import routers
 from .views import UserViewSet, GroupViewSet,UserList,UserDetail
+from jobs import views
+
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -13,4 +15,5 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('users/', UserList.as_view()),
     path('users/<int:pk>/', UserDetail.as_view()),
+    
 ]

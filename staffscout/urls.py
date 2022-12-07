@@ -19,12 +19,12 @@ from django.conf.urls import include
 from rest_framework import routers
 from users import views
 
-# router = routers.DefaultRouter()
-# router.register(r'users', views.LoginView)
-# router.register(r'groups', views.GroupViewSet)
+router = routers.DefaultRouter()
+router.register(r'users', views.UserList)
+router.register(r'groups', views.GroupViewSet)
 
 urlpatterns = [
-    # path('', include(router.urls)),
+    path('', include('frontend.urls')),
     path('admin/', admin.site.urls),
     path('candidate/', include('candidate.urls')),
     path('jobs/', include('jobs.urls')),
@@ -34,3 +34,11 @@ urlpatterns = [
     path('accounts/', include('rest_registration.api.urls')),
 
 ]
+
+# urlpatterns = [
+#     path('', include('frontend.urls')),
+#     path('admin/', admin.site.urls),
+#     path('api/', include('users.urls')),
+
+# ]
+

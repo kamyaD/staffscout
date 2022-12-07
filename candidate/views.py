@@ -3,7 +3,8 @@ from django.shortcuts import render
 # Create your views here.
 from django.shortcuts import render
 from .models import Candidate
-from rest_framework import generics
+from rest_framework import generics,status
+from rest_framework.views import APIView
 from .serializers import CandidateSerializer
 
 
@@ -32,3 +33,9 @@ class CandidateDelete(generics.RetrieveDestroyAPIView):
     # API endpoint that allows a customer record to be deleted.
     queryset = Candidate.objects.all()
     serializer_class = CandidateSerializer
+
+class DeclereInterestInAJob(APIView):
+    serializer_class = CandidateSerializer
+
+    def post(self, request, format=None):
+        pass

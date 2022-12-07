@@ -1,6 +1,8 @@
 from django.db import models
+from jobs.models import Jobs
 
 class Candidate(models.Model):
+    # id=models.IntegerField()
     first_name = models.CharField("First Name", max_length=240)
     last_name = models.CharField("last Name", max_length=240)
     phone = models.CharField("Phone", max_length=240)
@@ -10,3 +12,5 @@ class Candidate(models.Model):
 
     def __str__(self):
         return self.name
+
+
