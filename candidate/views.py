@@ -3,15 +3,18 @@ from django.shortcuts import render
 # Create your views here.
 from django.shortcuts import render
 from .models import Candidate
+from rest_framework.response import Response 
 from rest_framework import generics,status
 from rest_framework.views import APIView
 from .serializers import CandidateSerializer
+
 
 
 class CandidateCreate(generics.CreateAPIView):
     # API endpoint that allows creation of a new candidate
     queryset = Candidate.objects.all(),
     serializer_class = CandidateSerializer
+    
 
 
 class CandidateList(generics.ListAPIView):

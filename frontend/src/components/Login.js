@@ -1,10 +1,20 @@
 import React, { Component } from "react";
 import Header from './Header';
+import http from "../http-common";
 
+
+// const getAll = () => {
+//     return http.get("/candidate/");
+//   };
 export default class Login extends Component {
+    state = {
+        candidates:[]
+    }
     constructor(props){
         super(props);
-
+        http.get("/candidate/").then(res=>{
+            console.log(res.data)
+        })
     }
 
     render() {
