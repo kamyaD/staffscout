@@ -31,10 +31,25 @@ class Jobs(models.Model):
     experience_length = models.CharField("Experience", max_length=240)
     experience_level = models.CharField("Experience Level", max_length=240)
     created = models.DateField(auto_now_add=True)
-    owner = models.ForeignKey('auth.User',  on_delete=models.CASCADE)
+    # owner = models.ForeignKey('auth.User',  on_delete=models.CASCADE)
     highlighted = models.TextField()
     # interested_candidate= models.ForeignKey('candidate.Candidate',  on_delete=models.CASCADE)
     job_level=models.CharField(max_length=240,choices=JOB_LEVEL_CHOICES)
+    # owner = models.ForeignKey('auth.User', related_name='snippets', on_delete=models.CASCADE)
+    highlighted = models.TextField()
+    
+    def save(self, *args, **kwargs):
+        """
+        Use the `pygments` library to create a highlighted HTML
+        representation of the code snippet.
+        """
+        lexer = get_lexer_by_name(self.language)
+        linenos = 'table' if self.linenos else False
+        options = {'title': self.title} if self.title else {}
+        formatter = HtmlFormatter(style=self.style, linenos=linenos,
+                                full=True, **options)
+        self.highlighted = highlight(self.code, lexer, formatter)
+        super().save(*args, **kwargs)
     
     
 

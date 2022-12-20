@@ -1,16 +1,9 @@
-from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from jobs.views import Jobs
+from .models import User
 
+class UserSerializer(serializers.ModelSerializer):
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-    jobs = serializers.PrimaryKeyRelatedField(many=True, queryset=Jobs.objects.all())
     class Meta:
         model = User
-        fields = ['url', 'username', 'email', 'groups', 'jobs']
-
-
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Group
-        fields = ['url', 'name']
+        fields = ('id', 'username', 'first_name', 'last_name', 'bio', 'profile_pic', 'city', 'country', 'job_title', 'availability_status')
+        read_only_field = ('username',)
