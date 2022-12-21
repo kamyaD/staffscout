@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 from django.views.generic.base import RedirectView
 from rest_framework.routers import DefaultRouter
 
-from users.views import UserViewSet, UserLogin
+from users.views import UserViewSet, UserLogin, RegisterView
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -29,6 +29,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include(router.urls)),
     path('api-user-login/', UserLogin.as_view()),
+    path('register/', RegisterView.as_view(), name='auth_register'),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     re_path(r'ˆ$', RedirectView.as_view(url=reverse_lazy('api-root'), permanent=False)),
 

@@ -13,11 +13,12 @@ def create_auth_token(sender,instance=None, created=False, **kwargs):
 
 class User(AbstractUser):
     bio = models.TextField(blank=True)
-    city = models.CharField(max_length=240, blank=True)
-    country=models.CharField(max_length=240, blank=True)
-    job_title =models.CharField(max_length=240, blank=True)
-    availability_status = models.CharField(max_length=240, blank=True)
+    city = models.CharField(max_length=215, blank=True)
+    country=models.CharField(max_length=215, blank=True)
+    job_title =models.CharField(max_length=215, blank=True)
+    availability_status = models.CharField(max_length=215, blank=True)
     profile_pic = models.ImageField(blank=True)
+    password2 = models.CharField(max_length=215, blank=True)
 
 
 
