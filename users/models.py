@@ -19,6 +19,7 @@ class User(AbstractUser):
     availability_status = models.CharField(max_length=215, blank=True)
     profile_pic = models.ImageField(blank=True)
     password2 = models.CharField(max_length=215, blank=True)
+    
 
 
 
