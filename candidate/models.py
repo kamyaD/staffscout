@@ -3,7 +3,7 @@ from .data import SPECIALISM,SALES_RETAIL, SUSPPLY_CHAIN_TRANSPORT_LOGISTICS,ENG
 from .data import MARKETING,MEDIA_COMMUNICATION_AND_WRITING, SPECIALISM, ENGINEERING_CONSTRUCTION_PLANNING, ENERGY_MINING
 from .data import CUSTOMER_SERVICE,ART_FASHION_DESIGN,ENTERTAINMENT, SCIENCE_LAB_PROFESSIONALS, BANKING_INVESTMENT_MANAGEMENT
 from .data import IT_PROGRAMMING,MANUFACTURING, OFFICE_ADMIN, RESTAURANT_HOSPITALITY
-# from jobs.models import Jobs
+from jobs.models import Jobs
 
 
 class Candidate(models.Model):
@@ -31,12 +31,25 @@ class Candidate(models.Model):
     banking_investment_management = models.CharField(max_length=240,choices=BANKING_INVESTMENT_MANAGEMENT, null=True) 
     office_admin = models.CharField(max_length=240,choices=OFFICE_ADMIN, null=True) 
     restaurant_hospitality = models.CharField(max_length=240,choices=RESTAURANT_HOSPITALITY, null=True) 
-
-    
+    # jobs_list = models.ForeignKey('jobs.Jobs', related_name='jobs_liist', on_delete=models.DO_NOTHING)
     # password = models.CharField(max_length=50)
     created = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.first_name
+
+# class JobsInterestedIn(models.Model):
+#     name = models.CharField(max_length=255)
+#     jobs_list = models.ForeignKey('jobs.Jobs', related_name='jobs_list', on_delete=models.DO_NOTHING)
+
+#     def __str__(self):
+#         return self.name
+
+class CandidateJobApplication(models.Model):
+    user_id = models.IntegerField()
+    job_id = models.IntegerField()
+    
+    
+
 
 

@@ -30,8 +30,8 @@ class JobsList(generics.ListAPIView):
     queryset = Jobs.objects.all()
     serializer_class = JobsSerializer
 
-    def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+    # def perform_create(self, serializer):
+    #     serializer.save(owner=self.request.user)
 
     
 class JobsDetail(generics.RetrieveAPIView):
@@ -51,3 +51,7 @@ class JobsDelete(generics.RetrieveDestroyAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
     queryset = Jobs.objects.all()
     serializer_class = JobsSerializer
+
+
+
+  
