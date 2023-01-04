@@ -20,6 +20,8 @@ LANGUAGE_CHOICES = (
     ('french', 'French')
 )
 
+JOBS_INTERESTED_TITTLE = ()
+
 class Jobs(models.Model):
     title = models.CharField("Title", max_length=215)
     qualification = models.TextField("Qualification")
@@ -37,10 +39,9 @@ class Jobs(models.Model):
     experience_length = models.CharField("Experience", max_length=240)
     experience_level = models.CharField("Experience Level", max_length=240)
     created = models.DateField(auto_now_add=True)
-    # owner = models.ForeignKey('users.User',  on_delete=models.CASCADE)
-    # interested_candidate= models.ForeignKey('candidate.Candidate',  on_delete=models.CASCADE)
     job_level=models.CharField(max_length=240,choices=JOB_LEVEL_CHOICES)
     owner = models.ForeignKey('users.User', related_name='jobs', on_delete=models.CASCADE)
+    # interested_candidates =  models.ForeignKey('candidate.Candidate', related_name='jobs_interested', on_delete=models.CASCADE)
     
     
     
