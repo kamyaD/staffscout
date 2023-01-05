@@ -31,23 +31,21 @@ class Candidate(models.Model):
     banking_investment_management = models.CharField(max_length=240,choices=BANKING_INVESTMENT_MANAGEMENT, null=True) 
     office_admin = models.CharField(max_length=240,choices=OFFICE_ADMIN, null=True) 
     restaurant_hospitality = models.CharField(max_length=240,choices=RESTAURANT_HOSPITALITY, null=True) 
-    # jobs_list = models.ForeignKey('jobs.Jobs', related_name='jobs_liist', on_delete=models.DO_NOTHING)
-    # password = models.CharField(max_length=50)
     created = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.first_name
 
-# class JobsInterestedIn(models.Model):
-#     name = models.CharField(max_length=255)
-#     jobs_list = models.ForeignKey('jobs.Jobs', related_name='jobs_list', on_delete=models.DO_NOTHING)
 
-#     def __str__(self):
-#         return self.name
+class CandidateJobApplications(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    user_id = models.PositiveBigIntegerField()
+    job_id = models.PositiveBigIntegerField()
+    created_at = models.DateTimeField()
+    updated_at = models.DateTimeField()
 
-class CandidateJobApplication(models.Model):
-    user_id = models.IntegerField()
-    job_id = models.IntegerField()
+    def __str__(self):
+        return self.user_id
     
     
 

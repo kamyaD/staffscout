@@ -2,7 +2,6 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.shortcuts import render
-from .models import Jobs
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.decorators import api_view
@@ -11,7 +10,8 @@ from rest_framework.reverse import reverse
 
 
 
-from .serializers import JobsSerializer
+from .models import Jobs,Specialisms,Specialities
+from .serializers import JobsSerializer,SpecialismsSerializer,SpecialitiesSerializer
 from .permissions import IsOwnerOrReadOnly
 
 class JobsCreate(generics.CreateAPIView):
@@ -29,9 +29,6 @@ class JobsList(generics.ListAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
     queryset = Jobs.objects.all()
     serializer_class = JobsSerializer
-
-    # def perform_create(self, serializer):
-    #     serializer.save(owner=self.request.user)
 
     
 class JobsDetail(generics.RetrieveAPIView):
@@ -51,6 +48,16 @@ class JobsDelete(generics.RetrieveDestroyAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
     queryset = Jobs.objects.all()
     serializer_class = JobsSerializer
+
+class SpecialismsList(generics.ListAPIView):
+    permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
+    queryset = Specialisms.objects.all()
+    serializer_class = SpecialismsSerializer
+
+class SpecialitiesList(generics.ListAPIView):
+    permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
+    queryset = Specialities.objects.all()
+    serializer_class = SpecialitiesSerializer
 
 
 
