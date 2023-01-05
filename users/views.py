@@ -1,6 +1,7 @@
 from rest_framework import viewsets, generics
 from django.contrib.auth.models import User
 from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
@@ -9,10 +10,16 @@ from .models import User
 from .serializers import UserSerializer, RegisterSerializer
 
 
-class UserViewSet(viewsets.ModelViewSet):
+class UserViewSet(generics.ListAPIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [IsAuthenticated]
+
+class UserDetail(generics.RetrieveAPIView):
+    # API endpoint that returns a single jobs by pk.
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 class UserLogin(ObtainAuthToken):
 

@@ -95,27 +95,29 @@ WSGI_APPLICATION = 'staffscout.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'staffscout',
+#         'USER': 'staffscout',
+#         'PASSWORD': 'admin',
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
+
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'staffscout',
-        'USER': 'staffscout',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'staffscouts_draft',
+        'USER': 'sdm4n4uamcgf',
+        'PASSWORD': 'Malys258',
+        'HOST': '92.205.12.152',
         'PORT': '',
     }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'stafbfmn_staffscout',
-#         'USER': 'sdm4n4uamcgf',
-#         'PASSWORD': 'Malys258',
-#         'HOST': 'https://staffscout.co.ke',
-#         'PORT': '2083',
-#     }
-# }
 
 
 
