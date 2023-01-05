@@ -7,9 +7,9 @@ from rest_framework import generics,status
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
-from .serializers import CandidateSerializer,CandidateJobApplicationSerializer
+from .serializers import CandidateSerializer,CandidateJobApplicationsSerializer
 # from jobs.serializers import CandidateJobsInterestedIn
-from .models import Candidate,CandidateJobApplication
+from .models import Candidate,CandidateJobApplications
 # from jobs.permissions import IsOwnerOrReadOnly
 from jobs.models import Jobs
 
@@ -48,13 +48,13 @@ class CandidateDelete(generics.RetrieveDestroyAPIView):
 
 class CreateCandidateJobApplication(generics.CreateAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
-    queryset = CandidateJobApplication.objects.all()
-    serializer_class = CandidateJobApplicationSerializer
+    queryset = CandidateJobApplications.objects.all()
+    serializer_class = CandidateJobApplicationsSerializer
 
 class ListCandidateJobApplication(generics.ListAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
-    queryset = CandidateJobApplication.objects.all()
-    serializer_class = CandidateJobApplicationSerializer
+    queryset = CandidateJobApplications.objects.all()
+    serializer_class = CandidateJobApplicationsSerializer
     
 
 
