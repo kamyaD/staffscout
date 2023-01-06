@@ -21,6 +21,12 @@ class UserDetail(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+class UserUpdate(generics.RetrieveUpdateAPIView):
+    # API endpoint that allows a jobs record to be updated.
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
 class UserLogin(ObtainAuthToken):
 
     def post(self, request, *args, **kwargs):
