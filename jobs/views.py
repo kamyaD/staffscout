@@ -10,8 +10,8 @@ from rest_framework.reverse import reverse
 
 
 
-from .models import Jobs,Specialisms,Specialities
-from .serializers import JobsSerializer,SpecialismsSerializer,SpecialitiesSerializer
+from .models import Jobs,Specialisms,Specialities,ContractTypes,EducationLevels
+from .serializers import JobsSerializer,SpecialismsSerializer,SpecialitiesSerializer,ContractTypesSerialiers,EducationLevelsSerialiers
 from .permissions import IsOwnerOrReadOnly
 
 class JobsCreate(generics.CreateAPIView):
@@ -58,6 +58,18 @@ class SpecialitiesList(generics.ListAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
     queryset = Specialities.objects.all()
     serializer_class = SpecialitiesSerializer
+
+class ContractTypesList(generics.ListAPIView):
+    permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
+    queryset = ContractTypes.objects.all()
+    serializer_class = ContractTypesSerialiers
+
+class EducationLevelsList(generics.ListAPIView):
+    permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
+    queryset = EducationLevels.objects.all()
+    serializer_class = EducationLevelsSerialiers
+
+
 
 
 

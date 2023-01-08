@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 from django.views.generic.base import RedirectView
 from rest_framework.routers import DefaultRouter
 
-from users.views import UserViewSet, UserLogin, RegisterView
+# from users.views import UserViewSet, UserLogin, RegisterView
 
 router = DefaultRouter()
 # router.register(r'users', UserViewSet)
@@ -34,9 +34,7 @@ urlpatterns = [
     path('candidate/', include('candidate.urls')),
     path('jobs/', include('jobs.urls')),
     path('employer/', include('employer.urls')),
-    # path('api-auth/', include('rest_framework.urls')),
-    # path('users/', include('users.urls')),
-    # path('accounts/', include('rest_registration.api.urls')),
+    
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

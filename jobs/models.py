@@ -56,3 +56,22 @@ class Specialities(models.Model):
 
     def __str__(self):
         return self.specialities_name
+
+class ContractTypes(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    contract_types_name = models.CharField(max_length=200)
+    created_at = models.DateTimeField(blank=True, null=True)
+    updated_at = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.contract_types_name
+
+class EducationLevels(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    experiences_id = models.PositiveBigIntegerField()
+    education_levels_name = models.CharField(max_length=200)
+    created_at = models.DateTimeField(blank=True, null=True)
+    updated_at = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.education_levels_name
