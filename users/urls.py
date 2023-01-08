@@ -16,7 +16,8 @@ urlpatterns = [
     path('list-users/', UserViewSet.as_view(), name='list-users'),
     path('get-single-user/<int:pk>/', UserDetail.as_view(), name='get-single-user/'),
     path('update-user/<int:pk>/', UserUpdate.as_view(), name='update-user'),
-
+    path('password_reset/', include('django_rest_passwordreset.urls', namespace='password_reset')),
+    path('password_reset/confirm', include('django_rest_passwordreset.urls', namespace='confirm_password_reset')),
     # path('users/<int:pk>/', UserDetail.as_view()),
     
 ]

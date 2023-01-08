@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Jobs,Specialisms,Specialities
+from .models import Jobs,Specialisms,Specialities,ContractTypes,EducationLevels
 
 class JobsSerializer(serializers.ModelSerializer):
     
@@ -18,3 +18,16 @@ class SpecialitiesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Specialities
         fields = ['id','specialities_name','created_at','updated_at']
+
+
+class ContractTypesSerialiers(serializers.ModelSerializer):
+
+    class Meta:
+        model = ContractTypes
+        fields = ['id', 'contract_types_name', 'created_at', 'updated_at']
+
+class EducationLevelsSerialiers(serializers.ModelSerializer):
+
+    class Meta:
+        model = EducationLevels
+        fields = ['id','experiences_id','education_levels_name','created_at','updated_at']

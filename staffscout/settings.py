@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'users',
     'rest_registration',
     'corsheaders',
+    'django_rest_passwordreset',
     
 
 ]
@@ -189,9 +190,10 @@ REST_REGISTRATION = {
     'RESET_PASSWORD_VERIFICATION_ENABLED': False,
 }
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'domnick.kamya@regenorganics.co'#sender's email-id
-EMAIL_HOST_PASSWORD = 'Sanergy123'#password associated with above email-id
+EMAIL_HOST_USER = 'domisemak@gmail.com'#sender's email-id
+EMAIL_HOST_PASSWORD = 'Dommy2020'#password associated with above email-id
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

@@ -23,7 +23,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username',  'email', 'password', 'password2','first_name', 'last_name', 'bio', 'profile_pic', 'city', 'country', 'job_title', 'availability_status')
+        fields = ('username',  'email', 'password', 'password2','first_name', 'last_name', 'bio', 'profile_pic', 'city', 'country', 'job_title', 'availability_status','is_employer','is_candidate','is_both_employer_and_candidate')
 
         extra_kwargs = {
             'first_name': {'required': True},
@@ -56,3 +56,4 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.save()
 
         return user
+
