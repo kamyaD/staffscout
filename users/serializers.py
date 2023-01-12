@@ -49,7 +49,10 @@ class RegisterSerializer(serializers.ModelSerializer):
             city =  validated_data['city'],
             country =  validated_data['country'],
             job_title =  validated_data['job_title'],
-            availability_status =  validated_data['availability_status']
+            availability_status =  validated_data['availability_status'],
+            is_employer =  validated_data['is_employer'],
+            is_candidate =  validated_data['is_candidate'],
+            is_both_employer_and_candidate =  validated_data['is_both_employer_and_candidate']
         )
 
         user.set_password(validated_data['password'])
