@@ -24,9 +24,9 @@ class User(AbstractUser):
     availability_status = models.CharField(max_length=215, blank=True)
     profile_pic = models.CharField(max_length=215, blank=True)
     password2 = models.CharField(max_length=215, blank=True)
-    # is_employer= models.BooleanField(blank=True)
-    # is_candidate= models.BooleanField(blank=True)
-    # is_both_employer_and_candidate= models.BooleanField(blank=True)
+    is_employer= models.BooleanField(blank=True, default=False)
+    is_candidate= models.BooleanField(blank=True, default=False)
+    is_both_employer_and_candidate= models.BooleanField(blank=True, default=False)
 
 
 @receiver(reset_password_token_created)

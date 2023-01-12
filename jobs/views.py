@@ -26,14 +26,14 @@ class JobsCreate(generics.CreateAPIView):
 
 class JobsList(generics.ListAPIView):
     # API endpoint that allows jobs to be viewed.
-    permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
+    # permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
     queryset = Jobs.objects.all()
     serializer_class = JobsSerializer
 
     
 class JobsDetail(generics.RetrieveAPIView):
     # API endpoint that returns a single jobs by pk.
-    permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
+    # permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
     queryset = Jobs.objects.all()
     serializer_class = JobsSerializer
 
