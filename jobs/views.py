@@ -26,14 +26,14 @@ class JobsCreate(generics.CreateAPIView):
 
 class JobsList(generics.ListAPIView):
     # API endpoint that allows jobs to be viewed.
-    # permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
+    permission_classes = []
     queryset = Jobs.objects.all()
     serializer_class = JobsSerializer
 
     
 class JobsDetail(generics.RetrieveAPIView):
     # API endpoint that returns a single jobs by pk.
-    # permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
+    permission_classes = []
     queryset = Jobs.objects.all()
     serializer_class = JobsSerializer
 
@@ -54,10 +54,10 @@ class SpecialismsList(generics.ListAPIView):
     queryset = Specialisms.objects.all()
     serializer_class = SpecialismsSerializer
 
-class SpecialitiesList(generics.ListAPIView):
+class CreateSpecialism(generics.CreateAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
-    queryset = Specialities.objects.all()
-    serializer_class = SpecialitiesSerializer
+    queryset = Specialisms.objects.all()
+    serializer_class = SpecialismsSerializer
 
 class ContractTypesList(generics.ListAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
