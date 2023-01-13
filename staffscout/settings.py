@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'rest_registration',
     'corsheaders',
     'django_rest_passwordreset',
+    'django_filters',
     
 
 ]

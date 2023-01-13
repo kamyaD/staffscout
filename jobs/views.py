@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.shortcuts import render
-from rest_framework import generics
+from rest_framework import generics, filters
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -29,6 +29,8 @@ class JobsList(generics.ListAPIView):
     permission_classes = []
     queryset = Jobs.objects.all()
     serializer_class = JobsSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['specialism_id','education_level_id','jobs_title', 'city','country']
 
     
 class JobsDetail(generics.RetrieveAPIView):
