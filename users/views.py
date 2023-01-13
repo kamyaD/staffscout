@@ -1,4 +1,5 @@
 from rest_framework import viewsets, generics
+from django_filters.rest_framework import DjangoFilterBackend
 from django.contrib.auth.models import User
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
@@ -14,7 +15,9 @@ class UserViewSet(generics.ListAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['is_candidate', 'is_employer','is_both_employer_and_candidate']
+    
 class UserDetail(generics.RetrieveAPIView):
     # API endpoint that returns a single jobs by pk.
     permission_classes = [IsAuthenticatedOrReadOnly]
