@@ -20,7 +20,7 @@ class CreateCandidateSerializer(serializers.ModelSerializer):
 
 
 class CandidateJobApplicationsSerializer(serializers.ModelSerializer):
-
+    # owner = serializers.ReadOnlyField(source='owner.username')
     class Meta:
         model = CandidateJobApplications
         fields = ['id','user_id','job_id','created_at','updated_at']

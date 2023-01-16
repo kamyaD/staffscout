@@ -3,9 +3,10 @@ from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
 from .models import User
 from jobs.models import Jobs
+from candidate.models import CandidateJobApplications
 
 class UserSerializer(serializers.ModelSerializer):
-    # jobs = serializers.PrimaryKeyRelatedField(many=True, queryset=Jobs.objects.all())
+    # jobs_interested = serializers.PrimaryKeyRelatedField(many=True, queryset=CandidateJobApplications.objects.all())
 
     class Meta:
         model = User

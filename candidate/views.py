@@ -12,6 +12,7 @@ from .serializers import CandidateSerializer,CandidateJobApplicationsSerializer
 from .models import Candidate,CandidateJobApplications
 # from jobs.permissions import IsOwnerOrReadOnly
 from jobs.models import Jobs
+from jobs.permissions import IsOwnerOrReadOnly
 
 
 class CandidateCreate(generics.CreateAPIView):
@@ -47,15 +48,21 @@ class CandidateDelete(generics.RetrieveDestroyAPIView):
 
 
 class CreateCandidateJobApplication(generics.CreateAPIView):
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
     queryset = CandidateJobApplications.objects.all()
     serializer_class = CandidateJobApplicationsSerializer
 
+
 class ListCandidateJobApplication(generics.ListAPIView):
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
     queryset = CandidateJobApplications.objects.all()
     serializer_class = CandidateJobApplicationsSerializer
     
+    def get_queryset(self, *args, **kwargs):
+        print("user", self.request.user.id)
+        return super().get_queryset(*args, **kwargs).filter(
+            user_id=self.request.user.id
+        )
 
-
+    
 
