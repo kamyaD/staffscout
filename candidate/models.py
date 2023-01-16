@@ -43,6 +43,7 @@ class CandidateJobApplications(models.Model):
     job_id = models.PositiveBigIntegerField()
     created_at = models.DateTimeField()
     updated_at = models.DateTimeField()
+    # owner = models.ForeignKey('users.User', related_name='jobs_interested', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.user_id
