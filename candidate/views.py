@@ -59,7 +59,6 @@ class ListCandidateJobApplication(generics.ListAPIView):
     serializer_class = CandidateJobApplicationsSerializer
     
     def get_queryset(self, *args, **kwargs):
-        print("user", self.request.user.id)
         return super().get_queryset(*args, **kwargs).filter(
             user_id=self.request.user.id
         )
