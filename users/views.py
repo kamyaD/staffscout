@@ -45,7 +45,7 @@ class UserLogin(ObtainAuthToken):
             'token': token.key,
             'id': user.pk,
             'username': user.username,
-            'profile_pic': user.profile_pic,
+            'profilePic': user.profile_pic,
             'email': user.email
         })
 
