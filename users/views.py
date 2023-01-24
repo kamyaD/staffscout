@@ -44,7 +44,9 @@ class UserLogin(ObtainAuthToken):
         return Response({
             'token': token.key,
             'id': user.pk,
-            'username': user.username
+            'username': user.username,
+            'profilePic': user.profile_pic,
+            'email': user.email
         })
 
 class RegisterView(generics.CreateAPIView):
