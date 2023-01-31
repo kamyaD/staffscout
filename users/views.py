@@ -46,7 +46,10 @@ class UserLogin(ObtainAuthToken):
             'id': user.pk,
             'username': user.username,
             'profilePic': user.profile_pic,
-            'email': user.email
+            'email': user.email,
+            'isCandidate': user.is_candidate,
+            'isBothEmployerAndCandidate':user.is_both_employer_and_candidate,
+            'isEmployer': user.is_employer,
         })
 
 class RegisterView(generics.CreateAPIView):

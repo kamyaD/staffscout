@@ -60,7 +60,7 @@ class ListCandidateJobApplication(generics.ListAPIView):
     
     def get_queryset(self, *args, **kwargs):
         return super().get_queryset(*args, **kwargs).filter(
-            user_id=self.request.user.id
+            user_id=self.request.user_id
         )
 
     
