@@ -44,7 +44,7 @@ class CandidateJobApplications(models.Model):
     created_at = models.DateTimeField()
     updated_at = models.DateTimeField()
     # jobs_id = models.ForeignKey('jobs.Jobs',related_name='jobs_interested', on_delete=models.CASCADE)
-    owner = models.ForeignKey('users.User', related_name='jobs_interested', on_delete=models.CASCADE)
+    # owner = models.ForeignKey('users.User', related_name='jobs_interested', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.user_id
