@@ -39,17 +39,46 @@ class Candidate(models.Model):
 
 class CandidateJobApplications(models.Model):
     id = models.BigAutoField(primary_key=True)
+    # jobs =  models.ForeignKey('jobs.Jobs', models.DO_NOTHING)
     user_id = models.PositiveBigIntegerField()
     job_id = models.PositiveBigIntegerField()
     created_at = models.DateTimeField()
     updated_at = models.DateTimeField()
-    # jobs_id = models.ForeignKey('jobs.Jobs',related_name='jobs_interested', on_delete=models.CASCADE)
+    
     # owner = models.ForeignKey('users.User', related_name='jobs_interested', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.user_id
 
-    
+
+
+
+class Profiles(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    # user = models.ForeignKey('users.User', models.DO_NOTHING)
+    specialism_id = models.TextField(db_collation='utf8mb4_bin')
+    experiences_id = models.PositiveBigIntegerField()
+    education_levels_id = models.PositiveBigIntegerField()
+    job_title = models.TextField(blank=True, null=True)
+    personal_statement = models.TextField(blank=True, null=True)
+    personal = models.TextField(blank=True, null=True)
+    biography = models.TextField(blank=True, null=True)
+    education = models.TextField(blank=True, null=True)
+    experience = models.TextField(blank=True, null=True)
+    portfolio = models.TextField(blank=True, null=True)
+    skills = models.TextField(blank=True, null=True)
+    job_level = models.CharField(max_length=50)
+    county = models.CharField(max_length=50)
+    honors = models.TextField(blank=True, null=True)
+    availability_status = models.IntegerField()
+    metadata = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(blank=True, null=True)
+    updated_at = models.DateTimeField(blank=True, null=True)
+    deleted_at = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.job_title
+
     
     
 

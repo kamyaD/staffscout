@@ -8,7 +8,10 @@ from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 
 from .models import User
+from candidate.models import Profiles
 from .serializers import UserSerializer, RegisterSerializer
+from candidate.serializers import ProfilesSerializer
+
 
 
 class UserViewSet(generics.ListAPIView):
@@ -31,16 +34,20 @@ class UserUpdate(generics.RetrieveUpdateAPIView):
     serializer_class = UserSerializer
 
 class UserLogin(ObtainAuthToken):
-
+    
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data, 
         context={
             'request':request
         })
-
+        
+        
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
+        print("user===>", user)
+        # profile = serializer.validated_data['profile_data']
         token = Token.objects.get(user=user)
+
         return Response({
             'token': token.key,
             'id': user.pk,
@@ -50,6 +57,7 @@ class UserLogin(ObtainAuthToken):
             'isCandidate': user.is_candidate,
             'isBothEmployerAndCandidate':user.is_both_employer_and_candidate,
             'isEmployer': user.is_employer,
+            'jobTitle': user.profile.job_title,
         })
 
 class RegisterView(generics.CreateAPIView):
