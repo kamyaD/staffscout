@@ -31,7 +31,7 @@ urlpatterns = [
     # path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     re_path(r'ˆ$', RedirectView.as_view(url=reverse_lazy('api-root'), permanent=False)),
     path('users/', include('users.urls')),
-    # path('candidate/', include('candidate.urls')),
+    path('candidate/', include('candidate.urls')),
     path('jobs/', include('jobs.urls')),
     path('employer/', include('employer.urls')),
     

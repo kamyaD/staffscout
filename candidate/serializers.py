@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Candidate, CandidateJobApplications
+from .models import Candidate, CandidateJobApplications, Profiles
 from jobs.models import Jobs
 
 class CandidateSerializer(serializers.ModelSerializer):
@@ -24,3 +24,19 @@ class CandidateJobApplicationsSerializer(serializers.ModelSerializer):
     class Meta:
         model = CandidateJobApplications
         fields = ['id','user_id','job_id','created_at','updated_at']
+
+class ProfilesSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Profiles
+        fields = ['id','user','specialism_id','experiences_id','education_levels_id','job_title','personal_statement','personal','biography','education','experience','portfolio','skills','job_level','county','honors','availability_status','metadata','created_at','updated_at','deleted_at']
+
+class CreateProfilesSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Profiles 
+        fields = ['user','specialism_id','experiences_id','education_levels_id','job_title','personal_statement','personal','biography','education','experience','portfolio','skills','job_level','county','honors','availability_status']
+
+
+
+    

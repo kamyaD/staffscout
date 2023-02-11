@@ -7,9 +7,9 @@ from rest_framework import generics,status
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
-from .serializers import CandidateSerializer,CandidateJobApplicationsSerializer
+from .serializers import CandidateSerializer,CandidateJobApplicationsSerializer, ProfilesSerializer,CreateProfilesSerializer
 # from jobs.serializers import CandidateJobsInterestedIn
-from .models import Candidate,CandidateJobApplications
+from .models import Candidate,CandidateJobApplications,Profiles
 # from jobs.permissions import IsOwnerOrReadOnly
 from jobs.models import Jobs
 from jobs.permissions import IsOwnerOrReadOnly
@@ -59,9 +59,36 @@ class ListCandidateJobApplication(generics.ListAPIView):
     serializer_class = CandidateJobApplicationsSerializer
     
     def get_queryset(self, *args, **kwargs):
+        print("user===>", self.request.user.id)
         return super().get_queryset(*args, **kwargs).filter(
-            user_id=self.request.user_id
+            user_id=self.request.user.id
         )
+
+class ListCandidateProfiles(generics.ListAPIView):
+    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+    queryset = Profiles.objects.all()
+    serializer_class = ProfilesSerializer
+
+
+class CandidateProfileDetail(generics.RetrieveAPIView):
+    # API endpoint that returns a single candidate by pk.
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    queryset = Profiles.objects.all()
+    serializer_class = ProfilesSerializer
+
+class ProfilesUpdate(generics.RetrieveUpdateAPIView):
+    # API endpoint that allows a candidate record to be updated.
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    queryset = Profiles.objects.all()
+    serializer_class = ProfilesSerializer
+
+class CreateProfiles(generics.CreateAPIView):
+    permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
+    queryset = Profiles.objects.all()
+    serializer_class = CreateProfilesSerializer
+
+
+
 
     
 
