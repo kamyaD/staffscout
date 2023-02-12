@@ -7,11 +7,11 @@ from candidate.models import Profiles
 from candidate.serializers import ProfilesSerializer
 
 class UserSerializer(serializers.ModelSerializer):
-    profile= ProfilesSerializer(many=True)
+    # profile= ProfilesSerializer(many=True)
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'first_name', 'last_name', 'bio', 'profile_pic', 'city', 'country', 'job_title','availability_status','email', 'is_employer', 'is_candidate', 'is_both_employer_and_candidate','profile']
+        fields = ['id', 'username', 'first_name', 'last_name', 'bio', 'profile_pic', 'city', 'country', 'job_title','availability_status','email', 'is_employer', 'is_candidate', 'is_both_employer_and_candidate']
         # read_only_field = ('username',)
 
     

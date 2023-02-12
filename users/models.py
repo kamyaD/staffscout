@@ -17,7 +17,7 @@ def create_auth_token(sender,instance=None, created=False, **kwargs):
         Token.objects.create(user=instance)
 
 class User(AbstractUser):
-    profile =  models.ForeignKey('candidate.Profiles', models.DO_NOTHING)
+    # profile =  models.ForeignKey('candidate.Profiles', models.DO_NOTHING)
     bio = models.TextField(blank=True)
     city = models.CharField(max_length=215, blank=True)
     country=models.CharField(max_length=215, blank=True)
