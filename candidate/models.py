@@ -55,7 +55,7 @@ class CandidateJobApplications(models.Model):
 
 class Profiles(models.Model):
     id = models.BigAutoField(primary_key=True)
-    # user = models.ForeignKey('users.User', models.DO_NOTHING)
+    user = models.ForeignKey('users.User', models.DO_NOTHING)
     specialism_id = models.TextField(db_collation='utf8mb4_bin')
     experiences_id = models.PositiveBigIntegerField()
     education_levels_id = models.PositiveBigIntegerField()
