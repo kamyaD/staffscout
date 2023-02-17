@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_rest_passwordreset',
     'django_filters',
+    'django_userforeignkey',
     
 
 ]
@@ -62,6 +63,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'django_userforeignkey.middleware.UserForeignKeyMiddleware',
 ]
 
 ROOT_URLCONF = 'staffscout.urls'

@@ -44,7 +44,7 @@ class UserLogin(ObtainAuthToken):
         
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
-        print("user===>", user)
+        print("user===>", user.job_title)
         # profile = serializer.validated_data['profile_data']
         token = Token.objects.get(user=user)
 
@@ -57,7 +57,7 @@ class UserLogin(ObtainAuthToken):
             'isCandidate': user.is_candidate,
             'isBothEmployerAndCandidate':user.is_both_employer_and_candidate,
             'isEmployer': user.is_employer,
-            'jobTitle': user.profile.job_title,
+            'jobTitle': user.job_title,
         })
 
 class RegisterView(generics.CreateAPIView):
