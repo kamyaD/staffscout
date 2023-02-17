@@ -4,63 +4,68 @@ from django.contrib.auth.password_validation import validate_password
 from .models import User
 from jobs.models import Jobs
 from candidate.models import Profiles
-from candidate.serializers import ProfilesSerializer
+from django.contrib.auth import authenticate
+from rest_framework import serializers
+from rest_framework.authtoken.serializers import AuthTokenSerializer
+from django.utils.translation import gettext as _
+from rest_framework.authtoken.models import Token
+
+
 
 class UserSerializer(serializers.ModelSerializer):
-    # profile= ProfilesSerializer(many=True)
-
+    
     class Meta:
         model = User
-        fields = ['id', 'username', 'first_name', 'last_name', 'bio', 'profile_pic', 'city', 'country', 'job_title','availability_status','email', 'is_employer', 'is_candidate', 'is_both_employer_and_candidate']
+        fields = ['id', 'username', 'first_name', 'last_name','email', 'is_employer', 'is_candidate','is_both_employer_and_candidate']
         # read_only_field = ('username',)
-
+        
     
 
-class RegisterSerializer(serializers.ModelSerializer):
-    email = serializers.EmailField(
-        required=True,
-        validators=[UniqueValidator(queryset=User.objects.all())]
-    )
-
-    password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
-    password2 = serializers.CharField(write_only=True, required=True)
+class ProfilesSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+    # print("user==>", user)
 
     class Meta:
-        model = User
-        fields = ('username',  'email', 'password', 'password2','first_name', 'last_name', 'bio', 'profile_pic', 'city', 'country', 'job_title', 'availability_status','is_employer','is_candidate','is_both_employer_and_candidate')
-
-        extra_kwargs = {
-            'first_name': {'required': True},
-            'last_name': {'required': True}
-        
-        }
-
-    def validate(self, attrs):
-        if attrs['password'] !=attrs['password2']:
-            raise serializers.ValidationError({"password": "password fields didn't match."})
-        return attrs
+        model = Profiles
+        fields = [
+            'id','user','specialism_id','experiences_id','profile_pic', 'city', 'country', 'job_title','availability_status','education_levels_id','job_title','personal_statement','personal','biography','education','experience','portfolio','skills','honors','availability_status','metadata','created_at','updated_at','deleted_at']
 
     def create(self, validated_data):
-        user = User.objects.create(
-            username = validated_data['username'],
-            email =  validated_data['email'],
-            password =  validated_data['password'],
-            password2 =  validated_data['password2'],
-            first_name =  validated_data['first_name'],
-            last_name =  validated_data['last_name'],
-            bio =  validated_data['bio'],
-            profile_pic =  validated_data['profile_pic'],
-            city =  validated_data['city'],
-            country =  validated_data['country'],
-            job_title =  validated_data['job_title'],
-            availability_status =  validated_data['availability_status'],
-            is_employer =  validated_data['is_employer'],
-            is_candidate =  validated_data['is_candidate'],
-            is_both_employer_and_candidate =  validated_data['is_both_employer_and_candidate']
-        )
+        user_data = validated_data.pop('user')
+        user = User.objects.create_user(**user_data)
+        token = Token.objects.create(user=user)
+        validated_data['user'] = user
+        
+        profile = Profiles.objects.create(**validated_data)
+        return profile
 
-        user.set_password(validated_data['password'])
-        user.save()
 
-        return user
+
+
+class UserLoginSerializer(AuthTokenSerializer):
+    username = serializers.CharField()
+    password = serializers.CharField(
+        style={'input_type': 'password'},
+        trim_whitespace=False
+    )
+
+    def validate(self, attrs):
+        username = attrs.get('username')
+        password = attrs.get('password')
+
+        if username and password:
+            user = authenticate(request=self.context.get('request'),
+                                username=username, password=password)
+            if not user:
+                msg = _('Unable to log in with provided credentials.')
+                raise serializers.ValidationError(msg, code='authorization')
+        else:
+            msg = _('Must include "username" and "password".')
+            raise serializers.ValidationError(msg, code='authorization')
+
+        attrs['user'] = user
+        return attrs
+
+
+
 

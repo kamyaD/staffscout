@@ -9,6 +9,7 @@ from django.dispatch import receiver
 from django.urls import reverse
 from django_rest_passwordreset.signals import reset_password_token_created
 from django.core.mail import send_mail  
+import uuid
 
 
 @receiver(post_save,sender=settings.AUTH_USER_MODEL)
@@ -16,18 +17,16 @@ def create_auth_token(sender,instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
 
+
 class User(AbstractUser):
-    # profile =  models.ForeignKey('candidate.Profiles', models.DO_NOTHING)
-    bio = models.TextField(blank=True)
-    city = models.CharField(max_length=215, blank=True)
-    country=models.CharField(max_length=215, blank=True)
-    job_title =models.CharField(max_length=215, blank=True)
-    availability_status = models.CharField(max_length=215, blank=True)
-    profile_pic = models.CharField(max_length=215, blank=True)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     password2 = models.CharField(max_length=215, blank=True)
     is_employer= models.BooleanField(blank=True, default=False)
     is_candidate= models.BooleanField(blank=True, default=False)
     is_both_employer_and_candidate= models.BooleanField(blank=True, default=False)
+
+    def __str__(self):
+        return self.id
 
 
 @receiver(reset_password_token_created)
@@ -49,8 +48,6 @@ def password_reset_token_created(sender, instance, reset_password_token, *args, 
 
 
 
-
-
     def __str__(self):
-        return self.username
+        return self.id
     
