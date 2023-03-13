@@ -7,12 +7,13 @@ from rest_framework import generics,status
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
-from .serializers import CandidateJobApplicationsSerializer, ProfilesSerializer,CreateProfilesSerializer
+from .serializers import CandidateJobApplicationsSerializer
 # from candidate.serializers import CandidateJobApplicationsSerializer
 from .models import CandidateJobApplications,Profiles
 from jobs.permissions import IsOwnerOrReadOnly
 from jobs.models import Jobs
 from jobs.permissions import IsOwnerOrReadOnly
+
 
 
 # class CandidateCreate(generics.CreateAPIView):
@@ -64,28 +65,28 @@ class ListCandidateJobApplication(generics.ListAPIView):
             user_id=self.request.user.id
         )
 
-class ListCandidateProfiles(generics.ListAPIView):
-    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
-    queryset = Profiles.objects.all()
-    serializer_class = ProfilesSerializer
+# class ListCandidateProfiles(generics.ListAPIView):
+#     permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+#     queryset = Profiles.objects.all()
+#     serializer_class = ProfilesSerializer
 
 
-class CandidateProfileDetail(generics.RetrieveAPIView):
-    # API endpoint that returns a single candidate by pk.
-    permission_classes = [IsAuthenticatedOrReadOnly]
-    queryset = Profiles.objects.all()
-    serializer_class = ProfilesSerializer
+# class CandidateProfileDetail(generics.RetrieveAPIView):
+#     # API endpoint that returns a single candidate by pk.
+#     permission_classes = [IsAuthenticatedOrReadOnly]
+#     queryset = Profiles.objects.all()
+#     serializer_class = ProfilesSerializer
 
-class ProfilesUpdate(generics.RetrieveUpdateAPIView):
-    # API endpoint that allows a candidate record to be updated.
-    permission_classes = [IsAuthenticatedOrReadOnly]
-    queryset = Profiles.objects.all()
-    serializer_class = ProfilesSerializer
+# class ProfilesUpdate(generics.RetrieveUpdateAPIView):
+#     # API endpoint that allows a candidate record to be updated.
+#     permission_classes = [IsAuthenticatedOrReadOnly]
+#     queryset = Profiles.objects.all()
+#     serializer_class = ProfilesSerializer
 
-class CreateProfiles(generics.CreateAPIView):
-    permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
-    queryset = Profiles.objects.all()
-    serializer_class = CreateProfilesSerializer
+# class CreateProfiles(generics.CreateAPIView):
+#     permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
+#     queryset = Profiles.objects.all()
+#     serializer_class = CreateProfilesSerializer
 
 
 

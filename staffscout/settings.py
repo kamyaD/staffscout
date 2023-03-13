@@ -124,6 +124,18 @@ DATABASES = {
 }
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'robellas_dalaonline',
+#         'USER': 'robellas_rose',
+#         'PASSWORD': 'l{0[*88dCkAk',
+#         'HOST': '51.89.153.42',
+#         'PORT': '',
+#     }
+# }
+
+
 
 
 

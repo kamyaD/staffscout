@@ -6,11 +6,13 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
+from rest_framework.exceptions import ValidationError
 
 from .models import User
 from candidate.models import Profiles
-from .serializers import UserSerializer, RegisterSerializer
-from candidate.serializers import ProfilesSerializer
+from .serializers import UserSerializer,ProfilesSerializer, UserLoginSerializer
+
+# from candidate.serializers import ProfilesSerializer
 
 
 
@@ -34,6 +36,8 @@ class UserUpdate(generics.RetrieveUpdateAPIView):
     serializer_class = UserSerializer
 
 class UserLogin(ObtainAuthToken):
+    serializer_class = UserLoginSerializer
+    
     
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data, 
@@ -41,28 +45,24 @@ class UserLogin(ObtainAuthToken):
             'request':request
         })
         
-        
-        serializer.is_valid(raise_exception=True)
+        if not serializer.is_valid():
+            print(serializer.errors)
+            raise ValidationError("Invalid data")
         user = serializer.validated_data['user']
-        print("user===>", user.job_title)
-        # profile = serializer.validated_data['profile_data']
+        
         token = Token.objects.get(user=user)
+        profile = user.profile
+
 
         return Response({
-            'token': token.key,
-            'id': user.pk,
-            'username': user.username,
-            'profilePic': user.profile_pic,
-            'email': user.email,
-            'isCandidate': user.is_candidate,
-            'isBothEmployerAndCandidate':user.is_both_employer_and_candidate,
-            'isEmployer': user.is_employer,
-            'jobTitle': user.job_title,
-        })
+            'token': token.key, 
+            'user_id': user.pk, 
+            'profile': ProfileSerializer(profile, many=False).data
+            })
 
 class RegisterView(generics.CreateAPIView):
-    queryset = User.objects.all()
+    # queryset = User.objects.all()
     permission_classes = (AllowAny,)
-    serializer_class = RegisterSerializer
+    serializer_class = ProfilesSerializer
 
 
