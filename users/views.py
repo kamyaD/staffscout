@@ -57,7 +57,7 @@ class UserLogin(ObtainAuthToken):
         return Response({
             'token': token.key, 
             'user_id': user.pk, 
-            'profile': ProfileSerializer(profile, many=False).data
+            'profile': ProfilesSerializer(profile, many=False).data
             })
 
 class RegisterView(generics.CreateAPIView):
