@@ -26,7 +26,7 @@ class CandidateJobApplications(models.Model):
 # User = get_user_model()
 class Profiles(models.Model):
     # user = UserForeignKey(auto_user_add=True, related_name='profiles')
-    user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     specialism_id = models.TextField(db_collation='utf8mb4_bin', blank=True)
     experiences_id = models.PositiveBigIntegerField(blank=True)
     education_levels_id = models.PositiveBigIntegerField(blank=True)

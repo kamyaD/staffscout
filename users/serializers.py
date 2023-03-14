@@ -18,8 +18,8 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['id', 'username', 'first_name', 'last_name','email', 'is_employer', 'is_candidate','is_both_employer_and_candidate']
         # read_only_field = ('username',)
-        
-    
+
+
 
 class ProfilesSerializer(serializers.ModelSerializer):
     user = UserSerializer()
@@ -33,7 +33,8 @@ class ProfilesSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user_data = validated_data.pop('user')
         user = User.objects.create_user(**user_data)
-        token = Token.objects.create(user=user)
+        user.set_password(self.context.get('request').data['user']['password'])
+        user.save()
         validated_data['user'] = user
         
         profile = Profiles.objects.create(**validated_data)

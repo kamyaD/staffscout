@@ -26,7 +26,7 @@ class User(AbstractUser):
     is_both_employer_and_candidate= models.BooleanField(blank=True, default=False)
 
     def __str__(self):
-        return self.id
+        return f'{self.id}'
 
 
 @receiver(reset_password_token_created)
