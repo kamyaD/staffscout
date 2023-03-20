@@ -56,7 +56,6 @@ class UserLogin(ObtainAuthToken):
 
         return Response({
             'token': token.key, 
-            'user_id': user.pk, 
             'profile': ProfilesSerializer(profile, many=False).data
             })
 

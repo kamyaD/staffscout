@@ -5,12 +5,11 @@ from jobs.models import Jobs
 # from users.serializers import UserSerializer
 
 
-# class ProfileSerializer(serializers.ModelSerializer):
+class ProfileSerializer(serializers.ModelSerializer):
 
-#     class Meta:
-#         model = Profiles
-#         fields = ['user','specialism_id','experiences_id','education_levels_id','job_title','personal_statement','personal','biography','education','experience','portfolio','skills','job_level','county','honors','availability_status','city','county','profile_pic']
-
+    class Meta:
+        model = Profiles
+        fields = ['user','specialism_id','experiences_id','education_levels_id','job_title','personal_statement','personal','biography','education','experience','portfolio','skills','job_level','county','honors','availability_status','city','county','profile_pic']
 
 
 class CandidateSerializer(serializers.ModelSerializer):

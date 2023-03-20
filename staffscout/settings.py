@@ -50,11 +50,13 @@ INSTALLED_APPS = [
     'django_rest_passwordreset',
     'django_filters',
     'django_userforeignkey',
+    'debug_toolbar',
     
 
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -88,6 +90,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 WSGI_APPLICATION = 'staffscout.wsgi.application'
 
+if DEBUG:
+    INTERNAL_IPS = [
+        "127.0.0.1",
+    ]
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases

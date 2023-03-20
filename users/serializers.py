@@ -23,7 +23,6 @@ class UserSerializer(serializers.ModelSerializer):
 
 class ProfilesSerializer(serializers.ModelSerializer):
     user = UserSerializer()
-    # print("user==>", user)
 
     class Meta:
         model = Profiles
@@ -42,6 +41,12 @@ class ProfilesSerializer(serializers.ModelSerializer):
 
 
 
+class ProfilesUpdateSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+
+    class Meta:
+        model = Profiles
+        fields = ProfilesSerializer.Meta.fields
 
 class UserLoginSerializer(AuthTokenSerializer):
     username = serializers.CharField()
