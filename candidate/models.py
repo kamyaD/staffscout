@@ -69,6 +69,11 @@ class Profiles(models.Model):
     country=models.CharField(max_length=215, blank=True)
     profile_pic = models.CharField(max_length=215, blank=True)
 
+    class Meta:
+        ordering = ('pk',)
+        verbose_name = 'Profile'
+        verbose_name_plural = 'Profiles'
+
     def __str__(self):
         return self.user.username
 
