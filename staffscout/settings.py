@@ -93,6 +93,7 @@ WSGI_APPLICATION = 'staffscout.wsgi.application'
 if DEBUG:
     INTERNAL_IPS = [
         "127.0.0.1",
+        # "154.159.237.161"
     ]
 
 # Database
