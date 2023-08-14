@@ -93,6 +93,7 @@ WSGI_APPLICATION = 'staffscout.wsgi.application'
 if DEBUG:
     INTERNAL_IPS = [
         "127.0.0.1",
+        # "154.159.237.161"
     ]
 
 # Database
@@ -122,8 +123,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'staffscouts_draft',
-        'USER': 'sdm4n4uamcgf',
-        'PASSWORD': 'Malys258',
+        'USER': 'dommy',
+        'PASSWORD': 'admin',
         'HOST': '92.205.12.152',
         'PORT': '',
     }

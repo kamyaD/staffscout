@@ -9,8 +9,14 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from .serializers import CandidateJobApplicationsSerializer,CandidateSerializer
 from users.serializers import ProfilesSerializer, ProfilesUpdateSerializer
-from candidate.serializers import CandidateJobApplicationsSerializer
-from .models import CandidateJobApplications,Profiles,Candidate
+from candidate.serializers import (
+    CandidateJobApplicationsSerializer,
+    SpecialitiesSerializer)
+from .models import (
+    CandidateJobApplications,
+    Profiles,
+    Candidate,
+    Specialities)
 from jobs.permissions import IsOwnerOrReadOnly
 from jobs.models import Jobs
 from jobs.permissions import IsOwnerOrReadOnly
@@ -87,6 +93,25 @@ class CreateProfiles(generics.CreateAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
     queryset = Profiles.objects.all()
     serializer_class = ProfilesSerializer
+
+class CreateSpecialities(generics.CreateAPIView):
+    permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
+    queryset = Specialities.objects.all()
+    serializer_class = SpecialitiesSerializer
+
+class ListSpecialities(generics.ListAPIView):
+    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+    queryset = Specialities.objects.all()
+    serializer_class = SpecialitiesSerializer
+
+class SpecialtyDetail(generics.RetrieveAPIView):
+    # API endpoint that returns a single candidate by pk.
+    permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
+    queryset = Specialities.objects.all()
+    serializer_class = SpecialitiesSerializer
+
+
+
 
 
 

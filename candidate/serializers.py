@@ -1,6 +1,9 @@
 from rest_framework import serializers
 
-from .models import CandidateJobApplications,Candidate,Profiles
+from .models import (CandidateJobApplications,
+                    Candidate,
+                    Profiles,
+                    Specialities)
 from jobs.models import Jobs
 # from users.serializers import UserSerializer
 
@@ -33,6 +36,13 @@ class CandidateJobApplicationsSerializer(serializers.ModelSerializer):
     class Meta:
         model = CandidateJobApplications
         fields = ['id','user_id','job_id','created_at','updated_at']
+
+
+class SpecialitiesSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Specialities
+        fields = ['id', 'specialities_name', 'created_at','updated_at']
 
 
 

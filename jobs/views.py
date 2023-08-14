@@ -56,6 +56,16 @@ class SpecialismsList(generics.ListAPIView):
     queryset = Specialisms.objects.all()
     serializer_class = SpecialismsSerializer
 
+class SpecialismDetail(generics.ListAPIView):
+    permission_classes = []
+    serializer_class = SpecialismsSerializer
+    # lookup_field = 'type'
+
+    def get_queryset(self):
+        type_param = self.request.query_params.get('type')
+        queryset = Specialisms.objects.filter(type=type_param)
+        return queryset
+
 class CreateSpecialism(generics.CreateAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
     queryset = Specialisms.objects.all()
