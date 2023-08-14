@@ -123,8 +123,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'staffscouts_draft',
-        'USER': 'sdm4n4uamcgf',
-        'PASSWORD': 'Malys258',
+        'USER': 'dommy',
+        'PASSWORD': 'admin',
         'HOST': '92.205.12.152',
         'PORT': '',
     }

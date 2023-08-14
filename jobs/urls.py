@@ -1,5 +1,15 @@
 from django.urls import include, path
-from .views import JobsCreate, JobsList, JobsDetail, JobsUpdate, JobsDelete,SpecialismsList,ContractTypesList,EducationLevelsList,CreateSpecialism
+from .views import (
+    JobsCreate, 
+    JobsList, 
+    JobsDetail, 
+    JobsUpdate, 
+    JobsDelete,
+    SpecialismsList,
+    ContractTypesList,
+    EducationLevelsList,
+    CreateSpecialism,
+    SpecialismDetail)
 
 urlpatterns = [
     path('create/', JobsCreate.as_view(), name='create-jobs'),
@@ -11,7 +21,7 @@ urlpatterns = [
     path('list-contract-types/', ContractTypesList.as_view(), name='list-contract-types'),
     path('list-education-levels/', EducationLevelsList.as_view(), name='list-education-levels'),
     path('create-specialism/', CreateSpecialism.as_view(), name='create-specialism'),
-   
+    path('specialism/', SpecialismDetail.as_view(), name='retrieve-specialism-detail'),
 ]
 
 

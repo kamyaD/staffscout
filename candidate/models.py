@@ -77,6 +77,20 @@ class Profiles(models.Model):
     def __str__(self):
         return self.user.username
 
+
+class Specialities(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    specialities_name = models.CharField(max_length=200)
+    created_at = models.DateTimeField(blank=True, null=True)
+    updated_at = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'specialities'
+
+
+
+
     
     
 
